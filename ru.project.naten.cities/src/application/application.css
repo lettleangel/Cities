@@ -1,0 +1,67 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+	
+.root {
+	-swatch-teal-gray-50: #ECEFF1;
+	-swatch-teal-gray-100: #CFD8DC;
+	-swatch-teal-gray-200: #B0BEC5;
+	-swatch-teal-gray-300: #90A4AE;
+	-swatch-teal-gray-400: #78909C;
+	-swatch-teal-gray-500: #607D8B;
+	-swatch-teal-gray-600: #546E7A;
+	-swatch-teal-gray-700: #455A64;
+	-swatch-teal-gray-800: #37474F;
+	-swatch-teal-gray-900: #263238;
+	
+	-swatch-teal-50: #E0F2F1;
+	-swatch-teal-100: #B2DFDB;
+	-swatch-teal-200: #80CBC4;
+	-swatch-teal-300: #4DB6AC;
+	-swatch-teal-400: #26A69A;
+	-swatch-teal-500: #009688;
+	-swatch-teal-600: #00897B;
+	-swatch-teal-700: #00796B;
+	-swatch-teal-800: #00695C;
+	-swatch-teal-900: #004D40;
+	-swatch-teal-A100: #A7FFEB;
+	-swatch-teal-A200: #64FFDA;
+	-swatch-teal-A400: #1DE9B6;
+	-swatch-teal-A700: #00BFA5;
+	
+	-swatch-accent: -swatch-teal-A200;
+	
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	
+}
+
+.main-window {
+	-fx-background-color: white;
+	-fx-border-width: 1;
+	-fx-border-color: rgba(0, 0, 0, 0.5);
+}
+
+.button-send {
+	-fx-background-color: transparent;
+}
+
+.button-send:hover {
+	-fx-background-color: rgba(0,0,0, 0.2);
+	-fx-background-radius: 27px;
+}
+
+.text-send {
+	-fx-background-color: transparent;
+	-fx-border-width:  0 0 1 0;
+	-fx-border-color:  rgba(0,0,0,0.5);
+}
+
+.text-send:focused {
+	-fx-border-width:  0 0 2 0;
+	-fx-border-color:  -swatch-accent;
+}
+
+.list-view {
+	-fx-border-width: 1;
+	-fx-border-color: rgba(0,0,0, 0.2);
+}

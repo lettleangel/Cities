@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0" styleClass="main-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLController">
+   <children>
+      <MenuBar style="-fx-background-color: white;"> 
+        <menus>
+          <Menu mnemonicParsing="false" text="File"> 
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#reastartEd" text="Restart" />
+                  <MenuItem mnemonicParsing="false" onAction="#surrender" text="Surrender" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="VS">
+               <items>
+                  <RadioMenuItem fx:id="radioButton1" mnemonicParsing="false" onAction="#reastartEd" selected="true" text="Player">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="vsgroup" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem fx:id="radioButton2" mnemonicParsing="false" onAction="#reastartEd" text="CPU" toggleGroup="$vsgroup" />
+               </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Language">
+               <items>
+                  <RadioMenuItem fx:id="radioButton3" mnemonicParsing="false" onAction="#reastartEd" selected="true" text="English">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="langgroup" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem fx:id="radioButton4" mnemonicParsing="false" onAction="#reastartEd" text="Русский" toggleGroup="$langgroup" />
+               </items>
+            </Menu>
+        </menus>
+         <VBox.margin>
+            <Insets left="-8.0" right="-8.0" top="-8.0" />
+         </VBox.margin>
+      </MenuBar>
+      <ListView fx:id="listView" editable="true" />
+      <HBox>
+         <children>
+            <Label fx:id="playerIndocator" text="Player" HBox.hgrow="ALWAYS" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label fx:id="time" alignment="CENTER_RIGHT" text="10" HBox.hgrow="NEVER" />
+         </children>
+      </HBox>
+      <HBox spacing="8.0" VBox.vgrow="NEVER">
+         <children> 
+            <TextField fx:id="actiontarget" onKeyPressed="#enterPressed" promptText="Enter word here" styleClass="text-send" HBox.hgrow="ALWAYS">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></TextField>
+            <Button mnemonicParsing="false" onAction="#handleSubmitButtonAction" styleClass="button-send" HBox.hgrow="NEVER">
+               <graphic>
+                  <SVGPath content="M2,21L23,12L2,3V10L17,12L2,14V21Z" opacity="0.5" />
+               </graphic></Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+</VBox>
