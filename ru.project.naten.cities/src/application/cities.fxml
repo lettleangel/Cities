@@ -15,6 +15,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#reastartEd" text="Restart" />
                   <MenuItem mnemonicParsing="false" onAction="#surrender" text="Surrender" />
+                  <MenuItem fx:id="properties" mnemonicParsing="false" text="Properies" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="VS">

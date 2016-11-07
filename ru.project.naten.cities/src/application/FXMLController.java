@@ -1,5 +1,8 @@
 package application;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import application.GameMessage.MessageType;
 import application.db.DBConnector;
 import application.game.Motion;
@@ -241,7 +244,7 @@ public class FXMLController {
 			@Override
 			public void run() {
 				while (currentTime < TIME){
-					Platform.runLater(() -> time.setText(String.valueOf(TIME - currentTime))); // Записываем значение времени в интерфейс
+					Platform.runLater(() -> time.setText(TimeConverter.secToMin(TIME-currentTime))); // Записываем значение времени в интерфейс
 
 					currentTime++;
 					try {
