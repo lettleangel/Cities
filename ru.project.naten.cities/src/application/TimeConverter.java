@@ -10,6 +10,6 @@ public class TimeConverter {
 	public static String secToMin(int time){
 		int min = time / 60;
 		int sec = time % 60;
-		return String.valueOf(min) + ":" + String.format("%+02d", sec);
+		return String.valueOf(min) + ":" + String.format("%02d", sec);
 	}
 }

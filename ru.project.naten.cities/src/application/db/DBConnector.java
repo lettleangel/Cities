@@ -13,24 +13,49 @@ public class DBConnector {
 	public static Connection conn;
 	public static Statement statmt;
 	public static ResultSet resSet;
+	
+	private static final String PATH_RU = "C:\\Users\\Анастасия\\Documents\\SQLiteStudio\\words\\words2.db";
+	private static final String PATH_EN = "";
+	private Range range = Range.ALL;
+	// Обозначение языка
+	public enum Lang {
+		RU,
+		EN
+	}
+	
+	public enum Range {
+		ALL,
+		CIS
+	}
+	
 
-	public DBConnector() {
+	/**
+	 * бд со всеми городами
+	 */
+	public DBConnector(Lang lang) {
 		conn = null;
 		try {
+			String chosenDB = null;
+			if(lang == Lang.RU) // если у нас города на русском
+				chosenDB = PATH_RU;
+			else // Если у нас города на английском
+				chosenDB = PATH_EN;
+			
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Анастасия\\Documents\\SQLiteStudio\\words\\words2.db"); //jdbc:sqlite:C:\\Users\\Анастасия\\Documents\\SQLiteStudio\\words\\words.db"
+			conn = DriverManager.getConnection("jdbc:sqlite:" + chosenDB);
 			System.out.println("База Подключена!");
 			statmt = conn.createStatement();
 			//TODO uncomment
 			//cleanTable();
-			//boolean ok = statmt.execute("USE words.words;");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
+	
+	
+
 	/**
 	 * все слова на определенную букву
 	 * @param letter - буква
@@ -132,5 +157,13 @@ public class DBConnector {
 			e.printStackTrace();
 		}
 		return count;
+	}
+	
+	/**
+	 * устанавливает значение выборки
+	 * @param range
+	 */
+	public void setRange(Range range){
+		this.range = range;
 	}
 }

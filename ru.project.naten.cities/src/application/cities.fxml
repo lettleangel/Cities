@@ -15,7 +15,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#reastartEd" text="Restart" />
                   <MenuItem mnemonicParsing="false" onAction="#surrender" text="Surrender" />
-                  <MenuItem fx:id="properties" mnemonicParsing="false" text="Properies" />
+                  <MenuItem mnemonicParsing="false" onAction="#openProperties" text="Properies" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="VS">
@@ -37,6 +37,12 @@
                   </RadioMenuItem>
                   <RadioMenuItem fx:id="radioButton4" mnemonicParsing="false" onAction="#reastartEd" text="Русский" toggleGroup="$langgroup" />
                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="List Cities">
+              <items>
+                  <RadioMenuItem fx:id="all_cities" mnemonicParsing="false" text="All Cities" />
+                  <RadioMenuItem fx:id="cis_cities" mnemonicParsing="false" text="CIS's Cities" />
+              </items>
             </Menu>
         </menus>
          <VBox.margin>

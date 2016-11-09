@@ -1,10 +1,8 @@
 package application;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import application.GameMessage.MessageType;
 import application.db.DBConnector;
+import application.db.DBConnector.Range;
 import application.game.Motion;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -12,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogEvent;
@@ -22,6 +21,10 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 public class FXMLController {
@@ -31,7 +34,7 @@ public class FXMLController {
 
 	private static final int TIME = 300;
 
-	private static final int ALERT_TIME = 50;
+	private static final int ALERT_TIME = 5;
 
 	private DBConnector conn;
 
@@ -52,6 +55,12 @@ public class FXMLController {
 
 	@FXML
 	private Label playerIndocator; // индикатор хода игроков
+
+	@FXML
+	private RadioMenuItem all_cities; //выбираем все города
+
+	@FXML
+	private RadioMenuItem cis_cities; //выбираем города СНГ
 
 	@FXML
 	private ListView<GameMessage> listView; //окно сообщений
@@ -226,7 +235,13 @@ public class FXMLController {
 		System.out.println("Init");
 		actiontarget.requestFocus();
 
-		conn = new DBConnector();
+		conn = new DBConnector(DBConnector.Lang.RU); // Пока соединение есть только с русской базой
+		
+		if (all_cities.isSelected() == true) // Если выбраны все города
+			conn.setRange(Range.ALL);
+		else // Если выбраны только города СНГ
+			conn.setRange(Range.CIS);
+		
 		motion = new Motion(conn);
 		listView.setItems(list);
 		listView.setCellFactory(new Callback<ListView<GameMessage>, ListCell<GameMessage>>() {
@@ -256,11 +271,33 @@ public class FXMLController {
 
 					if (currentTime == ALERT_TIME){
 						Platform.runLater(() -> {
-							Alert alert = new Alert(AlertType.INFORMATION);
+							
+							/*Alert alert = new Alert(AlertType.NONE);
 							alert.setHeaderText("Warning!");
 							String s = motion.getLastWord();
-							alert.setContentText("With letter" + s + " we have " + conn.getCount(s) + " words");
-							alert.show(); 
+							alert.setContentText("With letter " + s + " we have " + conn.getCount(s) + " words");
+							alert.show(); */
+							
+							String s = motion.getLastWord();
+							
+							Stage info = new Stage();
+							info.initModality(Modality.NONE);
+							info.initStyle(StageStyle.UNDECORATED);
+							
+							VBox box = new VBox();
+							Label lb = new Label("With letter " + s + " we have " + conn.getCount(s) + " words");
+							box.getStyleClass().add("time-info");
+							box.getChildren().add(lb);
+							
+							Scene sc = new Scene(box);
+							sc.getStylesheets().add("/application/application.css");
+							info.setScene(sc);
+							info.show();
+							
+							double x1 = time.localToScreen(time.getBoundsInLocal()).getMinX() + time.getWidth()/2.0 - info.getWidth()/2.0;
+							double y1 = time.localToScreen(time.getBoundsInLocal()).getMinY() -5 - info.getHeight();
+							info.setX(x1);
+							info.setY(y1);
 						});
 					}
 				}
@@ -367,5 +404,14 @@ public class FXMLController {
 		}
 		list.add(new GameMessage(word, player));
 		listView.scrollTo(list.size()-1);
+	}
+
+	/**
+	 * Вызывает окно настроек
+	 * @param event
+	 */
+	@FXML
+	public void openProperties(ActionEvent event){
+
 	}
 }
