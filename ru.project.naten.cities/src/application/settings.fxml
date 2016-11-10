@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="335.0" spacing="16.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_RIGHT" spacing="16.0">
+         <children>
+            <Label text="Language" HBox.hgrow="NEVER" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <ChoiceBox prefWidth="150.0" HBox.hgrow="NEVER" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <VBox spacing="8.0">
+         <children>
+            <Label text="Game Time" />
+            <HBox alignment="CENTER_RIGHT" spacing="8.0">
+               <children>
+                  <Label text="300" HBox.hgrow="NEVER" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Slider HBox.hgrow="NEVER" />
+               </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </VBox>
+      <Separator prefWidth="200.0" />
+      <VBox spacing="8.0">
+         <children>
+            <Label text="Alert Time" />
+            <HBox alignment="CENTER_RIGHT" spacing="8.0">
+               <children>
+                  <Label text="50" HBox.hgrow="NEVER" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Slider HBox.hgrow="NEVER" />
+               </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </VBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="CENTER_LEFT" spacing="8.0">
+         <children>
+            <Label text="Alert" HBox.hgrow="NEVER" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <CheckBox alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" HBox.hgrow="NEVER" />
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</VBox>

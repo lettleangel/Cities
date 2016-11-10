@@ -1,5 +1,7 @@
 package application;
 
+import java.io.IOException;
+
 import application.GameMessage.MessageType;
 import application.db.DBConnector;
 import application.db.DBConnector.Range;
@@ -10,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -412,6 +416,18 @@ public class FXMLController {
 	 */
 	@FXML
 	public void openProperties(ActionEvent event){
-
+		Stage props = new Stage(StageStyle.DECORATED);
+		props.initModality(Modality.APPLICATION_MODAL);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/settings.fxml"));
+		loader.setController(this);
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene sc = new Scene(root);
+		props.setScene(sc);
+		props.show();
 	}
 }

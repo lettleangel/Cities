@@ -9,7 +9,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0" styleClass="main-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLController">
    <children>
-      <MenuBar style="-fx-background-color: white;"> 
+      <MenuBar style="-fx-background-color: white;">  
         <menus>
           <Menu mnemonicParsing="false" text="File"> 
             <items>
@@ -40,8 +40,11 @@
             </Menu>
             <Menu mnemonicParsing="false" text="List Cities">
               <items>
-                  <RadioMenuItem fx:id="all_cities" mnemonicParsing="false" text="All Cities" />
-                  <RadioMenuItem fx:id="cis_cities" mnemonicParsing="false" text="CIS's Cities" />
+                  <RadioMenuItem fx:id="all_cities" mnemonicParsing="false" selected="true" text="All Cities">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="citiesGroup" />
+                     </toggleGroup></RadioMenuItem>
+                  <RadioMenuItem fx:id="cis_cities" mnemonicParsing="false" text="CIS's Cities" toggleGroup="$citiesGroup" />
               </items>
             </Menu>
         </menus>
