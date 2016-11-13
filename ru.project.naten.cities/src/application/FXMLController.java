@@ -36,9 +36,9 @@ public class FXMLController {
 	private static final String PLAYER_1 = "Player 1";
 	private static final String PLAYER_2 = "Player 2";
 
-	private static final int TIME = 300;
+	//private int TIME = 300;
 
-	private static final int ALERT_TIME = 5;
+	//private int ALERT_TIME = 5;
 
 	private DBConnector conn;
 
@@ -262,8 +262,8 @@ public class FXMLController {
 
 			@Override
 			public void run() {
-				while (currentTime < TIME){
-					Platform.runLater(() -> time.setText(TimeConverter.secToMin(TIME-currentTime))); // Записываем значение времени в интерфейс
+				while (currentTime < Settings.getInstance().getGameTimeSlider()){
+					Platform.runLater(() -> time.setText(TimeConverter.secToMin(Settings.getInstance().getGameTimeSlider()-currentTime))); // Записываем значение времени в интерфейс
 
 					currentTime++;
 					try {
@@ -273,7 +273,7 @@ public class FXMLController {
 						return;
 					}
 
-					if (currentTime == ALERT_TIME){
+					if (currentTime == Settings.getInstance().getAlertTimeSlider()){
 						Platform.runLater(() -> {
 							
 							/*Alert alert = new Alert(AlertType.NONE);
@@ -419,7 +419,7 @@ public class FXMLController {
 		Stage props = new Stage(StageStyle.DECORATED);
 		props.initModality(Modality.APPLICATION_MODAL);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/settings.fxml"));
-		loader.setController(this);
+		loader.setController(new SettingsController());
 		Parent root = null;
 		try {
 			root = loader.load();
@@ -429,5 +429,11 @@ public class FXMLController {
 		Scene sc = new Scene(root);
 		props.setScene(sc);
 		props.show();
+		
+		props.setMinHeight(props.getHeight());
+		props.setMinWidth(props.getWidth());
+		
 	}
+	
+	
 }
