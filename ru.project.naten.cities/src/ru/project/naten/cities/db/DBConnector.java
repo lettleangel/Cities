@@ -1,4 +1,4 @@
-package application.db;
+package ru.project.naten.cities.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

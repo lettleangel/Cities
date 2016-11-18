@@ -1,12 +1,12 @@
-package application.game;
+package ru.project.naten.cities.game;
 
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import application.db.DBConnector;
+import ru.project.naten.cities.db.DBConnector;
 
-/**
+/*
  * Определяет ход игроков и с какой буквы следует ходить
  * @author Анастасия
  *
@@ -24,14 +24,14 @@ public class Motion {
 	public int check = 0;
 
 	/**
-	 * Определяем ход. 
-	 * Если ход = 0 - ходит первый игрок
-	 * Если ход = 1 - ходит второй игрок (либо компьютер)
-	 * Если ход = -1 - игра завершена, либо ошибка
-	 * @param move - передает ход
-	 * @return
-	 */
-	public int move(int move){		
+     * Определяем ход.
+     * Если ход = 0 - ходит первый игрок
+     * Если ход = 1 - ходит второй игрок (либо компьютер)
+     * Если ход = -1 - игра завершена, либо ошибка
+     * @param move - передает ход
+     * @return
+     */
+    public int move(int move) {
 		if (move == 1){
 			move = 0;
 		}
@@ -41,16 +41,19 @@ public class Motion {
 		}
 		return move;
 	}
-	/**
-	 * Проверяем правильно ли мы пишем слово.
-	 * Если первая буква слова совпадает с последней буквой предыдущего слова, то возвращаем true 
-	 * @param s1 - предыдущее слово
-	 * @param s2 - записываемое слово
-	 * @return
-	 */
+	
+    /**
+     * Проверяем правильно ли мы пишем слово.
+     * Если первая буква слова совпадает с последней буквой предыдущего слова, то возвращаем true
+     * @param s1 - предыдущее слово
+     * @param s2 - записываемое слово
+     * @return
+     */
 	public boolean letter(String s1, String s2){
 		if (s1 == null)
-			return true;
+        {
+            return true;
+        }
 		String str1 = s1.toLowerCase();
 		String str2 = s2.toLowerCase();
 		char last = str1.charAt(s1.length()-1);
@@ -59,8 +62,13 @@ public class Motion {
 		}
 		char first = str2.charAt(0);
 		if (last == first)
-			return true;
-		else return false;
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 	}
 
 	/**
@@ -73,7 +81,7 @@ public class Motion {
 	public boolean peopleMove(String newWord){
 		if (letter(previous, newWord) != true) {
 			return false;
-		} 
+        }
 		else {
 			previous = newWord;
 			return true;
@@ -144,14 +152,14 @@ public class Motion {
 			check = 0;
 			return list.get(index);
 		}
-		
+
 		//String wordLow = word.toLowerCase();
 		for (String correctWord : list){
 			if (correctWord.equalsIgnoreCase(word)){
 				return correctWord;
 			}
 		}
-		
+
 		if(word.length() >= 7){
 			for (String correctWord : list) {
 				if(word.length() == correctWord.length()){
@@ -159,9 +167,11 @@ public class Motion {
 					char[] newword = word.toCharArray();
 					int errors = 0;
 					for(int i = 0; i < correctWord.length(); i++)
-						if(dbword[i] != newword[i]){
+                    {
+                        if(dbword[i] != newword[i]){
 							errors++;
 						}
+                    }
 					if (errors <= 2){
 						check = 0;
 						return correctWord;
@@ -173,17 +183,19 @@ public class Motion {
 		if(check >= 3){
 			return null;
 		}
-		else 
-			return Integer.toString(3 - check);
+        else
+        {
+            return Integer.toString(3 - check);
+        }
 	}
-	
+
 	/**
-	 * Чистит количество попыток 
-	 */
+     * Чистит количество попыток
+     */
 	public void clearCheck(){
 		check = 0;
 	}
-	
+
 	/**
 	 * Определяет последнюю букву хода
 	 * @return
@@ -202,7 +214,7 @@ public class Motion {
 		}
 		return Character.toString(last);
 	}
-	
+
 	/**
 	 * Получаем последнюю букву слова
 	 * @return

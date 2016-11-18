@@ -1,4 +1,4 @@
-package application;
+package ru.project.naten.cities;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ChangeListener;

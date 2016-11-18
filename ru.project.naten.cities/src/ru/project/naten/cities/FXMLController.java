@@ -1,11 +1,7 @@
-package application;
+package ru.project.naten.cities;
 
 import java.io.IOException;
 
-import application.GameMessage.MessageType;
-import application.db.DBConnector;
-import application.db.DBConnector.Range;
-import application.game.Motion;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +26,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import ru.project.naten.cities.GameMessage.MessageType;
+import ru.project.naten.cities.db.DBConnector;
+import ru.project.naten.cities.db.DBConnector.Range;
+import ru.project.naten.cities.game.Motion;
 
 public class FXMLController {
 
@@ -71,11 +71,11 @@ public class FXMLController {
 	private ObservableList<GameMessage> list = FXCollections.observableArrayList();
 
 	@FXML
-	private Label time; // определяем время 
+    private Label time; // определяем время
 
 	private Motion motion; // + класс с ходами
 
-	private int move = 0; // определяет ходы 
+    private int move = 0; // определяет ходы
 
 	private Thread timer; // Поток таймера
 	private Runnable runTimer; // Внутренности потока
@@ -114,7 +114,9 @@ public class FXMLController {
 			actiontarget.clear();
 
 			if(validateWord(city)==false)
-				return;
+            {
+                return;
+            }
 			String word = motion.checkWord(city);
 			if(word == null) {
 				showWinners();
@@ -123,8 +125,10 @@ public class FXMLController {
 				playerIndocator.setText("Try again! You have " + (word) + " tries. Player " + (move+1));
 				return;
 			}
-			else 
-				city = word;
+            else
+            {
+                city = word;
+            }
 			//передает слово
 			ok = motion.peopleMove(city);
 
@@ -145,14 +149,22 @@ public class FXMLController {
 				timer.start(); // запускаем таймер
 
 				if (move == 0 )
-					playerIndocator.setText(PLAYER_1);
-				else 
-					playerIndocator.setText(PLAYER_2);
+                {
+                    playerIndocator.setText(PLAYER_1);
+                }
+                else
+                {
+                    playerIndocator.setText(PLAYER_2);
+                }
 			} else {
 				if (move == 0 )
-					playerIndocator.setText(PLAYER_1);
-				else 
-					playerIndocator.setText(PLAYER_2);
+                {
+                    playerIndocator.setText(PLAYER_1);
+                }
+                else
+                {
+                    playerIndocator.setText(PLAYER_2);
+                }
 			}
 		}
 
@@ -171,8 +183,10 @@ public class FXMLController {
 						playerIndocator.setText("Try again! You have " + (word) + " tries. Player " + (move+1));
 						return;
 					}
-					else 
-						city = word;
+                    else
+                    {
+                        city = word;
+                    }
 				}
 
 				//передает слово
@@ -186,11 +200,16 @@ public class FXMLController {
 					conn.markUsedWord(city);
 					//---CPU MOVE-----------------------------------------
 					if(radioButton3.isSelected() == true)
-						city = motion.computerMoveEn();
-					else
-						city = motion.computerMoveRu();
+                    {
+                        city = motion.computerMoveEn();
+                    }
+                    else
+                    {
+                        city = motion.computerMoveRu();
+                    }
 
-					if (city == null){	
+                    if (city == null)
+                    {
 						showWinners();
 						return;
 					}
@@ -204,7 +223,7 @@ public class FXMLController {
 						move = motion.move(move);
 						//отмечаем, что слово использованно
 						conn.markUsedWord(city);
-					}	
+                    }
 					playerIndocator.setText(PLAYER_1);
 				}
 			}
@@ -240,12 +259,16 @@ public class FXMLController {
 		actiontarget.requestFocus();
 
 		conn = new DBConnector(DBConnector.Lang.RU); // Пока соединение есть только с русской базой
-		
-		if (all_cities.isSelected() == true) // Если выбраны все города
-			conn.setRange(Range.ALL);
-		else // Если выбраны только города СНГ
-			conn.setRange(Range.CIS);
-		
+
+		if (all_cities.isSelected() == true)
+        {
+            conn.setRange(Range.ALL);
+        }
+        else
+        {
+            conn.setRange(Range.CIS);
+        }
+
 		motion = new Motion(conn);
 		listView.setItems(list);
 		listView.setCellFactory(new Callback<ListView<GameMessage>, ListCell<GameMessage>>() {
@@ -275,29 +298,29 @@ public class FXMLController {
 
 					if (currentTime == Settings.getInstance().getAlertTimeSlider()){
 						Platform.runLater(() -> {
-							
+
 							/*Alert alert = new Alert(AlertType.NONE);
 							alert.setHeaderText("Warning!");
 							String s = motion.getLastWord();
 							alert.setContentText("With letter " + s + " we have " + conn.getCount(s) + " words");
 							alert.show(); */
-							
+
 							String s = motion.getLastWord();
-							
+
 							Stage info = new Stage();
 							info.initModality(Modality.NONE);
 							info.initStyle(StageStyle.UNDECORATED);
-							
+
 							VBox box = new VBox();
 							Label lb = new Label("With letter " + s + " we have " + conn.getCount(s) + " words");
 							box.getStyleClass().add("time-info");
 							box.getChildren().add(lb);
-							
+
 							Scene sc = new Scene(box);
-							sc.getStylesheets().add("/application/application.css");
+                            sc.getStylesheets().add("/resources/css/application.css");
 							info.setScene(sc);
 							info.show();
-							
+
 							double x1 = time.localToScreen(time.getBoundsInLocal()).getMinX() + time.getWidth()/2.0 - info.getWidth()/2.0;
 							double y1 = time.localToScreen(time.getBoundsInLocal()).getMinY() -5 - info.getHeight();
 							info.setX(x1);
@@ -339,9 +362,13 @@ public class FXMLController {
 		}
 		else {
 			if (move == 1)
-				alert.setContentText("Player 1 Win");
-			else 
-				alert.setContentText("Player 2 Win");
+            {
+                alert.setContentText("Player 1 Win");
+            }
+            else
+            {
+                alert.setContentText("Player 2 Win");
+            }
 		}
 
 		alert.setOnCloseRequest(new EventHandler<DialogEvent>() {
@@ -355,30 +382,40 @@ public class FXMLController {
 	}
 
 	/**
-	 * Проверка правильности хода. 
-	 * Если у нас слово не меньше трех букв, английским или русским шрифтом (в зависимости от выбранного языка игры)
-	 * то слово подходит
-	 * @param word проверяемое слово
-	 * @return
-	 */
-	public boolean validateWord(String word) {		
+     * Проверка правильности хода.
+     * Если у нас слово не меньше трех букв, английским или русским шрифтом (в зависимости от выбранного языка игры)
+     * то слово подходит
+     * @param word проверяемое слово
+     * @return
+     */
+    public boolean validateWord(String word) {
 		//проверяет, чтобы передаваемые слова были не меньше 3х символов
 		if(word.length() < 3)
-			return false;
+        {
+            return false;
+        }
 
 		//проверяет на наличие символов другого алфавита и цифр
 		if(radioButton3.isSelected() == true)
-			if (motion.wordEnglish(word) == true)
-				return false;
+        {
+            if (motion.wordEnglish(word) == true)
+            {
+                return false;
+            }
+        }
 
 		if(radioButton4.isSelected() == true)
-			if (motion.wordRussian(word) == true)
-				return false;
+        {
+            if (motion.wordRussian(word) == true)
+            {
+                return false;
+            }
+        }
 
 		//проверка есть ли такое слово в базе данных
-		/*if (!conn.checkWord(word)){	
-			return false;
-		}*/
+        /*if (!conn.checkWord(word)){
+        	return false;
+        }*/
 
 		return true;
 	}
@@ -396,15 +433,23 @@ public class FXMLController {
 		MessageType player = null;
 		if(radioButton1.isSelected() == true){
 			if(move == 0)
-				player = MessageType.PLAYER_1;
-			else 
-				player = MessageType.PLAYER_2;
+            {
+                player = MessageType.PLAYER_1;
+            }
+            else
+            {
+                player = MessageType.PLAYER_2;
+            }
 		}
 		else if(radioButton2.isSelected() == true){
 			if(move == 0)
-				player = MessageType.PLAYER_1;
-			else 
-				player = MessageType.COMPUTER;
+            {
+                player = MessageType.PLAYER_1;
+            }
+            else
+            {
+                player = MessageType.COMPUTER;
+            }
 		}
 		list.add(new GameMessage(word, player));
 		listView.scrollTo(list.size()-1);
@@ -418,7 +463,7 @@ public class FXMLController {
 	public void openProperties(ActionEvent event){
 		Stage props = new Stage(StageStyle.DECORATED);
 		props.initModality(Modality.APPLICATION_MODAL);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/settings.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/settings.fxml"));
 		loader.setController(new SettingsController());
 		Parent root = null;
 		try {
@@ -429,11 +474,10 @@ public class FXMLController {
 		Scene sc = new Scene(root);
 		props.setScene(sc);
 		props.show();
-		
+
 		props.setMinHeight(props.getHeight());
 		props.setMinWidth(props.getWidth());
-		
+
 	}
-	
-	
+
 }

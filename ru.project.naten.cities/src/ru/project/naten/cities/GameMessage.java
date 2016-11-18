@@ -1,4 +1,4 @@
-package application;
+package ru.project.naten.cities;
 
 public class GameMessage {
 
