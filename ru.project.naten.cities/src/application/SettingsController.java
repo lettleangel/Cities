@@ -15,27 +15,27 @@ import javafx.scene.layout.VBox;
 public class SettingsController {
 
 	@FXML
-	public Slider gameTimeSlider; //настраиваем время игры
+	public Slider gameTimeSlider; //РЅР°СЃС‚СЂР°РёРІР°РµРј РІСЂРµРјСЏ РёРіСЂС‹
 	
 	@FXML
-	public Slider alertTimeSlider; // настраивает время всплывающей подсказки со словами
+	public Slider alertTimeSlider; // РЅР°СЃС‚СЂР°РёРІР°РµС‚ РІСЂРµРјСЏ РІСЃРїР»С‹РІР°СЋС‰РµР№ РїРѕРґСЃРєР°Р·РєРё СЃРѕ СЃР»РѕРІР°РјРё
 	
 	@FXML
-	public Label gameTimeNum; // показывает время хода (label)
+	public Label gameTimeNum; // РїРѕРєР°Р·С‹РІР°РµС‚ РІСЂРµРјСЏ С…РѕРґР° (label)
 	
 	@FXML
-	public Label alertTimeNum; // показывает время всплывающей подсказки (label)
+	public Label alertTimeNum; // РїРѕРєР°Р·С‹РІР°РµС‚ РІСЂРµРјСЏ РІСЃРїР»С‹РІР°СЋС‰РµР№ РїРѕРґСЃРєР°Р·РєРё (label)
 	
 	@FXML
-	public CheckBox alert; // выбор всплывающей подсказки
+	public CheckBox alert; // РІС‹Р±РѕСЂ РІСЃРїР»С‹РІР°СЋС‰РµР№ РїРѕРґСЃРєР°Р·РєРё
 	
 	@FXML
-	public CheckBox checkWord; // выбор проверки слов на ошибки
+	public CheckBox checkWord; // РІС‹Р±РѕСЂ РїСЂРѕРІРµСЂРєРё СЃР»РѕРІ РЅР° РѕС€РёР±РєРё
 	
 	@FXML
 	public VBox alertTimePanel; 
 	/**
-	 * работаем со slider-ами и передаем выбранные значения в label
+	 * СЂР°Р±РѕС‚Р°РµРј СЃРѕ slider-Р°РјРё Рё РїРµСЂРµРґР°РµРј РІС‹Р±СЂР°РЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РІ label
 	 */
 	@FXML
 	public void initialize(){
@@ -73,7 +73,7 @@ public class SettingsController {
 	}
 	
 	/**
-	 * выбор всплывающей подсказки
+	 * РІС‹Р±РѕСЂ РІСЃРїР»С‹РІР°СЋС‰РµР№ РїРѕРґСЃРєР°Р·РєРё
 	 */
 	@FXML
 	public void alertChoise(){
@@ -83,7 +83,7 @@ public class SettingsController {
 	}
 	
 	/**
-	 * выбор проверки слов на ошибки
+	 * РІС‹Р±РѕСЂ РїСЂРѕРІРµСЂРєРё СЃР»РѕРІ РЅР° РѕС€РёР±РєРё
 	 */
 	@FXML
 	public void checkWordsChoise(){

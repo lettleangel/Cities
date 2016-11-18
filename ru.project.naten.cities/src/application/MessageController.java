@@ -21,7 +21,7 @@ public class MessageController extends ListCell<GameMessage> {
 	private Label message;
 	
 	@FXML
-	private Label player; // записывает кто ходит
+	private Label player; // Р·Р°РїРёСЃС‹РІР°РµС‚ РєС‚Рѕ С…РѕРґРёС‚
 	
 	@FXML
 	private VBox vbox;

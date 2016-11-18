@@ -3,9 +3,9 @@ package application;
 public class TimeConverter {
 
 	/**
-	 * Конвертируем время из формата секунд в формат мм:сс
-	 * @param time - принимаемое время
-	 * @return - строку мм:сс
+	 * РљРѕРЅРІРµСЂС‚РёСЂСѓРµРј РІСЂРµРјСЏ РёР· С„РѕСЂРјР°С‚Р° СЃРµРєСѓРЅРґ РІ С„РѕСЂРјР°С‚ РјРј:СЃСЃ
+	 * @param time - РїСЂРёРЅРёРјР°РµРјРѕРµ РІСЂРµРјСЏ
+	 * @return - СЃС‚СЂРѕРєСѓ РјРј:СЃСЃ
 	 */
 	public static String secToMin(int time){
 		int min = time / 60;

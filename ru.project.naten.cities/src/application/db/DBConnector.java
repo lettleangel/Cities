@@ -14,10 +14,10 @@ public class DBConnector {
 	public static Statement statmt;
 	public static ResultSet resSet;
 	
-	private static final String PATH_RU = "C:\\Users\\Анастасия\\Documents\\SQLiteStudio\\words\\words2.db";
+	private static final String PATH_RU = "C:\\Users\\РђРЅР°СЃС‚Р°СЃРёСЏ\\Documents\\SQLiteStudio\\words\\words2.db";
 	private static final String PATH_EN = "";
 	private Range range = Range.ALL;
-	// Обозначение языка
+	// РћР±РѕР·РЅР°С‡РµРЅРёРµ СЏР·С‹РєР°
 	public enum Lang {
 		RU,
 		EN
@@ -30,20 +30,20 @@ public class DBConnector {
 	
 
 	/**
-	 * бд со всеми городами
+	 * Р±Рґ СЃРѕ РІСЃРµРјРё РіРѕСЂРѕРґР°РјРё
 	 */
 	public DBConnector(Lang lang) {
 		conn = null;
 		try {
 			String chosenDB = null;
-			if(lang == Lang.RU) // если у нас города на русском
+			if(lang == Lang.RU) // РµСЃР»Рё Сѓ РЅР°СЃ РіРѕСЂРѕРґР° РЅР° СЂСѓСЃСЃРєРѕРј
 				chosenDB = PATH_RU;
-			else // Если у нас города на английском
+			else // Р•СЃР»Рё Сѓ РЅР°СЃ РіРѕСЂРѕРґР° РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
 				chosenDB = PATH_EN;
 			
 			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("jdbc:sqlite:" + chosenDB);
-			System.out.println("База Подключена!");
+			System.out.println("Р‘Р°Р·Р° РџРѕРґРєР»СЋС‡РµРЅР°!");
 			statmt = conn.createStatement();
 			//TODO uncomment
 			//cleanTable();
@@ -57,8 +57,8 @@ public class DBConnector {
 	
 
 	/**
-	 * все слова на определенную букву
-	 * @param letter - буква
+	 * РІСЃРµ СЃР»РѕРІР° РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ Р±СѓРєРІСѓ
+	 * @param letter - Р±СѓРєРІР°
 	 * @return 
 	 */
 	public String getWordByLetter(String letter){
@@ -77,8 +77,8 @@ public class DBConnector {
 	}
 
 	/**
-	 * Есть ли данное слово в бд
-	 * @param word - передаем слово
+	 * Р•СЃС‚СЊ Р»Рё РґР°РЅРЅРѕРµ СЃР»РѕРІРѕ РІ Р±Рґ
+	 * @param word - РїРµСЂРµРґР°РµРј СЃР»РѕРІРѕ
 	 * @return
 	 */
 	public boolean checkWord(String word){
@@ -96,9 +96,9 @@ public class DBConnector {
 	}
 
 	/**
-	 * получаем список слов, которое начинается на определенную букву
-	 * @param letter - буква, с которой начинаются слова
-	 * @return - список слов на букву
+	 * РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє СЃР»РѕРІ, РєРѕС‚РѕСЂРѕРµ РЅР°С‡РёРЅР°РµС‚СЃСЏ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ Р±СѓРєРІСѓ
+	 * @param letter - Р±СѓРєРІР°, СЃ РєРѕС‚РѕСЂРѕР№ РЅР°С‡РёРЅР°СЋС‚СЃСЏ СЃР»РѕРІР°
+	 * @return - СЃРїРёСЃРѕРє СЃР»РѕРІ РЅР° Р±СѓРєРІСѓ
 	 */
 	public List<String> getWordsFromLetter(String letter){
 		List<String> list = new ArrayList<>();
@@ -117,7 +117,7 @@ public class DBConnector {
 	}
 	
 	/**
-	 * Очищает в таблицах все отметки использования.
+	 * РћС‡РёС‰Р°РµС‚ РІ С‚Р°Р±Р»РёС†Р°С… РІСЃРµ РѕС‚РјРµС‚РєРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ.
 	 */
 	public void cleanTable() {
 		String que = "UPDATE cities_all SET used='false';";
@@ -129,8 +129,8 @@ public class DBConnector {
 	}
 	
 	/**
-	 * Отмечает слово в бд как использованное.
-	 * @param word Слово, которое нужно отметить как использованное
+	 * РћС‚РјРµС‡Р°РµС‚ СЃР»РѕРІРѕ РІ Р±Рґ РєР°Рє РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅРѕРµ.
+	 * @param word РЎР»РѕРІРѕ, РєРѕС‚РѕСЂРѕРµ РЅСѓР¶РЅРѕ РѕС‚РјРµС‚РёС‚СЊ РєР°Рє РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅРѕРµ
 	 */
 	public void markUsedWord(String word) {
 		String que = "UPDATE cities_all SET used='true' WHERE name='" + word + "';";
@@ -142,9 +142,9 @@ public class DBConnector {
 	}
 	
 	/**
-	 * Получаем количество слов на определенную букву
-	 * @param s - буква, на которую получаем количество слов из бд
-	 * @return - количество слов в бд
+	 * РџРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ РЅР° РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ Р±СѓРєРІСѓ
+	 * @param s - Р±СѓРєРІР°, РЅР° РєРѕС‚РѕСЂСѓСЋ РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ РёР· Р±Рґ
+	 * @return - РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ РІ Р±Рґ
 	 */
 	public int getCount(String s){
 		String que = "SELECT COUNT(*) FROM cities_all WHERE name LIKE '" + s + "%' AND used='false';";
@@ -160,7 +160,7 @@ public class DBConnector {
 	}
 	
 	/**
-	 * устанавливает значение выборки
+	 * СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёРµ РІС‹Р±РѕСЂРєРё
 	 * @param range
 	 */
 	public void setRange(Range range){

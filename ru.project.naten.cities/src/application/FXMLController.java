@@ -43,50 +43,50 @@ public class FXMLController {
 	private DBConnector conn;
 
 	@FXML
-	private TextField actiontarget; //строка сообщения, где набираем текст
+	private TextField actiontarget; //СЃС‚СЂРѕРєР° СЃРѕРѕР±С‰РµРЅРёСЏ, РіРґРµ РЅР°Р±РёСЂР°РµРј С‚РµРєСЃС‚
 
 	@FXML
-	private RadioMenuItem radioButton1; //определяем игру против человека
+	private RadioMenuItem radioButton1; //РѕРїСЂРµРґРµР»СЏРµРј РёРіСЂСѓ РїСЂРѕС‚РёРІ С‡РµР»РѕРІРµРєР°
 
 	@FXML
-	private RadioMenuItem radioButton2; //определяем игру против компьютера
+	private RadioMenuItem radioButton2; //РѕРїСЂРµРґРµР»СЏРµРј РёРіСЂСѓ РїСЂРѕС‚РёРІ РєРѕРјРїСЊСЋС‚РµСЂР°
 
 	@FXML
-	private RadioMenuItem radioButton3; // определяет английский язык
+	private RadioMenuItem radioButton3; // РѕРїСЂРµРґРµР»СЏРµС‚ Р°РЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє
 
 	@FXML
-	private RadioMenuItem radioButton4; // определяет русский язык
+	private RadioMenuItem radioButton4; // РѕРїСЂРµРґРµР»СЏРµС‚ СЂСѓСЃСЃРєРёР№ СЏР·С‹Рє
 
 	@FXML
-	private Label playerIndocator; // индикатор хода игроков
+	private Label playerIndocator; // РёРЅРґРёРєР°С‚РѕСЂ С…РѕРґР° РёРіСЂРѕРєРѕРІ
 
 	@FXML
-	private RadioMenuItem all_cities; //выбираем все города
+	private RadioMenuItem all_cities; //РІС‹Р±РёСЂР°РµРј РІСЃРµ РіРѕСЂРѕРґР°
 
 	@FXML
-	private RadioMenuItem cis_cities; //выбираем города СНГ
+	private RadioMenuItem cis_cities; //РІС‹Р±РёСЂР°РµРј РіРѕСЂРѕРґР° РЎРќР“
 
 	@FXML
-	private ListView<GameMessage> listView; //окно сообщений
+	private ListView<GameMessage> listView; //РѕРєРЅРѕ СЃРѕРѕР±С‰РµРЅРёР№
 	private ObservableList<GameMessage> list = FXCollections.observableArrayList();
 
 	@FXML
-	private Label time; // определяем время 
+	private Label time; // РѕРїСЂРµРґРµР»СЏРµРј РІСЂРµРјСЏ 
 
-	private Motion motion; // + класс с ходами
+	private Motion motion; // + РєР»Р°СЃСЃ СЃ С…РѕРґР°РјРё
 
-	private int move = 0; // определяет ходы 
+	private int move = 0; // РѕРїСЂРµРґРµР»СЏРµС‚ С…РѕРґС‹ 
 
-	private Thread timer; // Поток таймера
-	private Runnable runTimer; // Внутренности потока
+	private Thread timer; // РџРѕС‚РѕРє С‚Р°Р№РјРµСЂР°
+	private Runnable runTimer; // Р’РЅСѓС‚СЂРµРЅРЅРѕСЃС‚Рё РїРѕС‚РѕРєР°
 
 
 	public FXMLController() {
 	}
 
 	/**
-	 * Обработчик действия кнопки SEND.
-	 * При нажатии кнопки Send записывается сообщение в TextArea (так же можно пользоваться Enter)
+	 * РћР±СЂР°Р±РѕС‚С‡РёРє РґРµР№СЃС‚РІРёСЏ РєРЅРѕРїРєРё SEND.
+	 * РџСЂРё РЅР°Р¶Р°С‚РёРё РєРЅРѕРїРєРё Send Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ СЃРѕРѕР±С‰РµРЅРёРµ РІ TextArea (С‚Р°Рє Р¶Рµ РјРѕР¶РЅРѕ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ Enter)
 	 * @param event
 	 */
 	@FXML
@@ -94,7 +94,7 @@ public class FXMLController {
 
 		String city = actiontarget.getText();
 
-		// проверка, чтобы не писали пустые слова
+		// РїСЂРѕРІРµСЂРєР°, С‡С‚РѕР±С‹ РЅРµ РїРёСЃР°Р»Рё РїСѓСЃС‚С‹Рµ СЃР»РѕРІР°
 		if (city == null){
 			return;
 		}
@@ -108,7 +108,7 @@ public class FXMLController {
 
 
 
-		//Игрок против игрока
+		//РРіСЂРѕРє РїСЂРѕС‚РёРІ РёРіСЂРѕРєР°
 		if (radioButton1.isSelected() == true){
 			boolean ok;
 			actiontarget.clear();
@@ -125,24 +125,24 @@ public class FXMLController {
 			}
 			else 
 				city = word;
-			//передает слово
+			//РїРµСЂРµРґР°РµС‚ СЃР»РѕРІРѕ
 			ok = motion.peopleMove(city);
 
 
 
-			//осуществляется дальнейшая работа, то есть мы определяем ходы (move) и в случае необходимости переписываем label
+			//РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ РґР°Р»СЊРЅРµР№С€Р°СЏ СЂР°Р±РѕС‚Р°, С‚Рѕ РµСЃС‚СЊ РјС‹ РѕРїСЂРµРґРµР»СЏРµРј С…РѕРґС‹ (move) Рё РІ СЃР»СѓС‡Р°Рµ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РїРµСЂРµРїРёСЃС‹РІР°РµРј label
 			if (ok == true){
 				motion.clearCheck();
 				addMessage(city, move);
 				move = motion.move(move);
-				//отмечаем, что слово использованно
+				//РѕС‚РјРµС‡Р°РµРј, С‡С‚Рѕ СЃР»РѕРІРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅРѕ
 				conn.markUsedWord(city);
 
-				if (timer.isAlive()) { // Если таймер запущен
-					timer.interrupt(); // Останавливаем
-					timer = new Thread(runTimer); // Создаём новый
+				if (timer.isAlive()) { // Р•СЃР»Рё С‚Р°Р№РјРµСЂ Р·Р°РїСѓС‰РµРЅ
+					timer.interrupt(); // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј
+					timer = new Thread(runTimer); // РЎРѕР·РґР°С‘Рј РЅРѕРІС‹Р№
 				}
-				timer.start(); // запускаем таймер
+				timer.start(); // Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
 
 				if (move == 0 )
 					playerIndocator.setText(PLAYER_1);
@@ -156,7 +156,7 @@ public class FXMLController {
 			}
 		}
 
-		//Игра с компьютером
+		//РРіСЂР° СЃ РєРѕРјРїСЊСЋС‚РµСЂРѕРј
 		else if (radioButton2.isSelected() == true){
 			boolean ok;
 			if(move == 0){
@@ -175,14 +175,14 @@ public class FXMLController {
 						city = word;
 				}
 
-				//передает слово
+				//РїРµСЂРµРґР°РµС‚ СЃР»РѕРІРѕ
 				ok = motion.peopleMove(city);
 
 				if (ok == true){
 					motion.clearCheck();
 					addMessage(city, move);
 					move = motion.move(move);
-					//отмечаем, что слово использованно
+					//РѕС‚РјРµС‡Р°РµРј, С‡С‚Рѕ СЃР»РѕРІРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅРѕ
 					conn.markUsedWord(city);
 					//---CPU MOVE-----------------------------------------
 					if(radioButton3.isSelected() == true)
@@ -196,13 +196,13 @@ public class FXMLController {
 					}
 					actiontarget.clear();
 
-					//передает слово
+					//РїРµСЂРµРґР°РµС‚ СЃР»РѕРІРѕ
 					ok = motion.peopleMove(city);
 
 					if (ok == true){
 						addMessage(city, move);
 						move = motion.move(move);
-						//отмечаем, что слово использованно
+						//РѕС‚РјРµС‡Р°РµРј, С‡С‚Рѕ СЃР»РѕРІРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅРѕ
 						conn.markUsedWord(city);
 					}	
 					playerIndocator.setText(PLAYER_1);
@@ -210,10 +210,10 @@ public class FXMLController {
 			}
 		}
 
-		//ставим фокус на ячейке с текстом
+		//СЃС‚Р°РІРёРј С„РѕРєСѓСЃ РЅР° СЏС‡РµР№РєРµ СЃ С‚РµРєСЃС‚РѕРј
 		actiontarget.requestFocus();
 
-		//провека на возможность следующего хода
+		//РїСЂРѕРІРµРєР° РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЃР»РµРґСѓСЋС‰РµРіРѕ С…РѕРґР°
 		char s = city.charAt(city.length()-1);
 		if(conn.getWordByLetter(Character.toString(s)) == null){
 			showWinners();
@@ -221,8 +221,8 @@ public class FXMLController {
 	}
 
 	/**
-	 * Обработчик нажатия на Enter тоже запишет слово
-	 * @param event - с клавиатуры передаем enter и записываем
+	 * РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РЅР° Enter С‚РѕР¶Рµ Р·Р°РїРёС€РµС‚ СЃР»РѕРІРѕ
+	 * @param event - СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ РїРµСЂРµРґР°РµРј enter Рё Р·Р°РїРёСЃС‹РІР°РµРј
 	 */
 	@FXML
 	protected void enterPressed(KeyEvent event){
@@ -232,18 +232,18 @@ public class FXMLController {
 	}
 
 	/**
-	 * Инициализация фокуса на строке
+	 * РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С„РѕРєСѓСЃР° РЅР° СЃС‚СЂРѕРєРµ
 	 */
 	@FXML
 	public void initialize(){
 		System.out.println("Init");
 		actiontarget.requestFocus();
 
-		conn = new DBConnector(DBConnector.Lang.RU); // Пока соединение есть только с русской базой
+		conn = new DBConnector(DBConnector.Lang.RU); // РџРѕРєР° СЃРѕРµРґРёРЅРµРЅРёРµ РµСЃС‚СЊ С‚РѕР»СЊРєРѕ СЃ СЂСѓСЃСЃРєРѕР№ Р±Р°Р·РѕР№
 		
-		if (all_cities.isSelected() == true) // Если выбраны все города
+		if (all_cities.isSelected() == true) // Р•СЃР»Рё РІС‹Р±СЂР°РЅС‹ РІСЃРµ РіРѕСЂРѕРґР°
 			conn.setRange(Range.ALL);
-		else // Если выбраны только города СНГ
+		else // Р•СЃР»Рё РІС‹Р±СЂР°РЅС‹ С‚РѕР»СЊРєРѕ РіРѕСЂРѕРґР° РЎРќР“
 			conn.setRange(Range.CIS);
 		
 		motion = new Motion(conn);
@@ -256,14 +256,14 @@ public class FXMLController {
 
 		});
 
-		// Создаём код (внутренности) потока
+		// РЎРѕР·РґР°С‘Рј РєРѕРґ (РІРЅСѓС‚СЂРµРЅРЅРѕСЃС‚Рё) РїРѕС‚РѕРєР°
 		runTimer = new Runnable() {
 			int currentTime = 0;
 
 			@Override
 			public void run() {
 				while (currentTime < Settings.getInstance().getGameTimeSlider()){
-					Platform.runLater(() -> time.setText(TimeConverter.secToMin(Settings.getInstance().getGameTimeSlider()-currentTime))); // Записываем значение времени в интерфейс
+					Platform.runLater(() -> time.setText(TimeConverter.secToMin(Settings.getInstance().getGameTimeSlider()-currentTime))); // Р—Р°РїРёСЃС‹РІР°РµРј Р·РЅР°С‡РµРЅРёРµ РІСЂРµРјРµРЅРё РІ РёРЅС‚РµСЂС„РµР№СЃ
 
 					currentTime++;
 					try {
@@ -308,12 +308,12 @@ public class FXMLController {
 				Platform.runLater(() -> showWinners());
 			}
 		};
-		// Создаём новый поток с описаными выше внутренностями
+		// РЎРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ РїРѕС‚РѕРє СЃ РѕРїРёСЃР°РЅС‹РјРё РІС‹С€Рµ РІРЅСѓС‚СЂРµРЅРЅРѕСЃС‚СЏРјРё
 		timer = new Thread(runTimer);
 	}
 
 	/**
-	 * Рестарт игры. Сбрасывает результаты, ставит первый ход первому игроку
+	 * Р РµСЃС‚Р°СЂС‚ РёРіСЂС‹. РЎР±СЂР°СЃС‹РІР°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚С‹, СЃС‚Р°РІРёС‚ РїРµСЂРІС‹Р№ С…РѕРґ РїРµСЂРІРѕРјСѓ РёРіСЂРѕРєСѓ
 	 * @param event
 	 */
 	@FXML
@@ -326,7 +326,7 @@ public class FXMLController {
 	}
 
 	/**
-	 * Показывает победителя
+	 * РџРѕРєР°Р·С‹РІР°РµС‚ РїРѕР±РµРґРёС‚РµР»СЏ
 	 */
 	public void showWinners(){
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -355,18 +355,18 @@ public class FXMLController {
 	}
 
 	/**
-	 * Проверка правильности хода. 
-	 * Если у нас слово не меньше трех букв, английским или русским шрифтом (в зависимости от выбранного языка игры)
-	 * то слово подходит
-	 * @param word проверяемое слово
+	 * РџСЂРѕРІРµСЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚Рё С…РѕРґР°. 
+	 * Р•СЃР»Рё Сѓ РЅР°СЃ СЃР»РѕРІРѕ РЅРµ РјРµРЅСЊС€Рµ С‚СЂРµС… Р±СѓРєРІ, Р°РЅРіР»РёР№СЃРєРёРј РёР»Рё СЂСѓСЃСЃРєРёРј С€СЂРёС„С‚РѕРј (РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЏР·С‹РєР° РёРіСЂС‹)
+	 * С‚Рѕ СЃР»РѕРІРѕ РїРѕРґС…РѕРґРёС‚
+	 * @param word РїСЂРѕРІРµСЂСЏРµРјРѕРµ СЃР»РѕРІРѕ
 	 * @return
 	 */
 	public boolean validateWord(String word) {		
-		//проверяет, чтобы передаваемые слова были не меньше 3х символов
+		//РїСЂРѕРІРµСЂСЏРµС‚, С‡С‚РѕР±С‹ РїРµСЂРµРґР°РІР°РµРјС‹Рµ СЃР»РѕРІР° Р±С‹Р»Рё РЅРµ РјРµРЅСЊС€Рµ 3С… СЃРёРјРІРѕР»РѕРІ
 		if(word.length() < 3)
 			return false;
 
-		//проверяет на наличие символов другого алфавита и цифр
+		//РїСЂРѕРІРµСЂСЏРµС‚ РЅР° РЅР°Р»РёС‡РёРµ СЃРёРјРІРѕР»РѕРІ РґСЂСѓРіРѕРіРѕ Р°Р»С„Р°РІРёС‚Р° Рё С†РёС„СЂ
 		if(radioButton3.isSelected() == true)
 			if (motion.wordEnglish(word) == true)
 				return false;
@@ -375,7 +375,7 @@ public class FXMLController {
 			if (motion.wordRussian(word) == true)
 				return false;
 
-		//проверка есть ли такое слово в базе данных
+		//РїСЂРѕРІРµСЂРєР° РµСЃС‚СЊ Р»Рё С‚Р°РєРѕРµ СЃР»РѕРІРѕ РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 		/*if (!conn.checkWord(word)){	
 			return false;
 		}*/
@@ -384,7 +384,7 @@ public class FXMLController {
 	}
 
 	/**
-	 * Сдаемся при нажатии на кнопку
+	 * РЎРґР°РµРјСЃСЏ РїСЂРё РЅР°Р¶Р°С‚РёРё РЅР° РєРЅРѕРїРєСѓ
 	 * @param event
 	 */
 	@FXML
@@ -411,7 +411,7 @@ public class FXMLController {
 	}
 
 	/**
-	 * Вызывает окно настроек
+	 * Р’С‹Р·С‹РІР°РµС‚ РѕРєРЅРѕ РЅР°СЃС‚СЂРѕРµРє
 	 * @param event
 	 */
 	@FXML
