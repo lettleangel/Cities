@@ -1,6 +1,6 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-	
+
 .root {
 	-swatch-teal-gray-50: #ECEFF1;
 	-swatch-teal-gray-100: #CFD8DC;
@@ -12,7 +12,7 @@
 	-swatch-teal-gray-700: #455A64;
 	-swatch-teal-gray-800: #37474F;
 	-swatch-teal-gray-900: #263238;
-	
+
 	-swatch-teal-50: #E0F2F1;
 	-swatch-teal-100: #B2DFDB;
 	-swatch-teal-200: #80CBC4;
@@ -27,12 +27,13 @@
 	-swatch-teal-A200: #64FFDA;
 	-swatch-teal-A400: #1DE9B6;
 	-swatch-teal-A700: #00BFA5;
-	
+
 	-swatch-accent: -swatch-teal-A200;
-	
+	-swatch-grey-background: #E2E2E2;
+
 	-fx-focus-color: transparent;
 	-fx-faint-focus-color: transparent;
-	
+
 }
 
 .main-window {
@@ -61,15 +62,107 @@
 	-fx-border-color:  -swatch-accent;
 }
 
-.list-view {
-	-fx-border-width: 1;
-	-fx-border-color: rgba(0,0,0, 0.2);
-}
-
 .time-info {
 	-fx-padding: 2 3 2 3;
 	-fx-background-color: #FFFF8D;
 	-fx-border-width: 1;
 	-fx-border-color: #795548;
 	-fx-alignment: center;
+}
+
+.message {
+  -fx-background-color: white;
+  -fx-border-color: rgba(0,0,0,0.2);
+  -fx-padding: 5;
+  -fx-border-width: 0 0 1 0;
+}
+
+/*
+ * LIST VIEW
+ */
+.list-view {
+   -fx-background-color: white;
+   -fx-border-width: 1;
+   -fx-border-color: rgba(0,0,0,0.2);
+   -fx-padding: 0px;
+ }
+
+ .list-view:focused, .list-view:selected, .list-view:pressed {
+   -fx-border-width: 1;
+   -fx-border-color: rgba(0,0,0,0.2);
+   -fx-border-radius: 0 0;
+   -fx-padding: 0px;
+   -fx-background-insets: 0 ;
+   -fx-background-radius: 0;
+ }
+
+/*.list-view:focused .list-cell:filled:focused:selected {
+  -fx-background-color: -swatch-light-grey;
+  -fx-text-fill: -swatch-500;
+}*/
+
+.list-view:hover .list-cell:hover {
+  -fx-background-color: transparent;
+}
+
+.list-cell:even {
+    -fx-background-color: transparent;
+}
+
+.list-cell:odd {
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+  /**-fx-cell-size: 40;*/
+  -fx-padding: 3 3 3 3;
+}
+
+/* The main scrollbar **track** CSS class  */
+.list-view .scroll-bar:horizontal,
+.list-view .scroll-bar:vertical {
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+  -fx-background-color:transparent;
+}
+.list-view .scroll-bar:horizontal .track,
+.list-view .scroll-bar:vertical .track{
+  -fx-background-color:transparent;
+  -fx-border-color:transparent;
+  -fx-background-radius: 0em;
+  -fx-border-radius:2;
+  -fx-border-width: 0;
+  -fx-padding: 2;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.list-view .scroll-bar:horizontal .increment-button ,
+.list-view .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+  -fx-background-radius: 0;
+  -fx-padding:0 0 10 0;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+
+.list-view .scroll-bar:vertical .increment-button ,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+  -fx-background-radius: 0;
+  -fx-padding:0 10 0 0;
+
+}
+
+.list-view  .scroll-bar .increment-arrow,
+.list-view  .scroll-bar .decrement-arrow{
+  -fx-shape:" ";
+  -fx-padding:0;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.list-view .scroll-bar:horizontal .thumb,
+.list-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+  -fx-background-insets: 2, 0, 0;
+  -fx-background-radius: 4;
 }
